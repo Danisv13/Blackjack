@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://media.istockphoto.com/id/1149059294/vector/black-jack-table-vector-illustration-eps-10-casino-illustration.jpg?s=170667a&w=0&k=20&c=2heM-sQ07ZE6XlMjZ3jMMnq9LqrK-VR2XjZvURvkPfE='); /* Reemplaza 'ruta_de_tu_imagen.jpg' con la ruta de tu imagen de fondo */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+  }
+  
+  
+  /* Estilos del contenedor principal del juego */
+  #game-container {
+    text-align: center;
+    
+  }
+  
+  /* Estilos de las manos del jugador y del repartidor */
+  #dealer-hand {
+    margin: 10px;
+    background-color: #fff; /* Cambia el color de fondo según tus preferencias */
+    border-radius: 8px; /* Añade esquinas redondeadas */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+  }
+  #player-hand{
+    margin: 40px;
+    background-color: #fff; /* Cambia el color de fondo según tus preferencias */
+    border-radius: 8px; /* Añade esquinas redondeadas */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra */
+  }
+   
+  
+  /* Estilos de las cartas del jugador y del repartidor */
+  #player-cards{
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px; /* Añade esquinas redondeadas */
+    background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
+  }
+   #dealer-cards {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px; /* Añade esquinas redondeadas */
+    background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
+  }
+  
+  /* Estilos de los botones */
+  button {
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #3498db; /* Cambia el color de fondo según tus preferencias */
+    color: #fff; /* Cambia el color del texto según tus preferencias */
+    border: none;
+    border-radius: 4px; /* Añade esquinas redondeadas */
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Añade transición al color de fondo */
+  }
+  
+  button:hover {
+    background-color: #2980b9; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+  }
+  
