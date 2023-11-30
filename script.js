@@ -1,3 +1,29 @@
+let countdown;
+let timeRemaining = 60; // Tiempo en segundos
+const numeroRondasObjetivo = 3;
+let rondasJugadas = 0;
+let objetivoAlcanzado = false;
+let rondasGanadas = 0;
+
+function startCountdown() {
+  countdown = setInterval(function () {
+    timeRemaining--;
+    updateUI();
+    
+    if (timeRemaining <= 0) {
+      endGame('¡Se acabó el tiempo! Has perdido.');
+    }
+  }, 1000); // Actualiza cada segundo
+}
+
+function stopCountdown() {
+  clearInterval(countdown);
+}
+
+function resetCountdown() {
+  timeRemaining = 60; // Reinicia el tiempo
+}
+
 const suits = ['Corazones', 'Diamantes', 'Tréboles', 'Picas'];
 const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
@@ -6,6 +32,7 @@ let playerHand = [];
 let dealerHand = [];
 let playerScore = 0;
 let dealerScore = 0;
+
 function createDeck() {
   deck = [];
   for (let suit of suits) {
@@ -23,6 +50,13 @@ function shuffleDeck() {
 }
 
 function deal() {
+  // Restablece el tiempo cuando el jugador comienza un nuevo juego
+  resetCountdown();
+  
+  // Restablece variables relacionadas con el objetivo de rondas
+  rondasJugadas = 0;
+  objetivoAlcanzado = false;
+  
   createDeck();
   shuffleDeck();
   playerHand = [drawCard(), drawCard()];
@@ -31,6 +65,9 @@ function deal() {
   dealerScore = calculateScore(dealerHand);
 
   updateUI();
+  
+  // Inicia la cuenta atrás al comenzar el juego
+  startCountdown();
 }
 
 function drawCard() {
@@ -91,10 +128,13 @@ function stand() {
     endGame('¡Es un empate!');
   }
 }
-
 function updateUI() {
   displayHand(playerHand, 'player-cards', 'player-score');
   displayHand(dealerHand, 'dealer-cards', 'dealer-score');
+  const timeRemainingElement = document.getElementById('time-remaining');
+  if (timeRemainingElement) {
+    timeRemainingElement.textContent = `Tiempo restante: ${timeRemaining} segundos`;
+  }
 }
 
 function displayHand(hand, cardsElementId, scoreElementId) {
@@ -109,8 +149,39 @@ function displayHand(hand, cardsElementId, scoreElementId) {
     cardsElement.appendChild(cardElement);
   }
 }
-
 function endGame(message) {
+  // Detiene la cuenta atrás al finalizar el juego
+  stopCountdown();
+  
   const resultElement = document.getElementById('game-result');
-  resultElement.textContent = message;
+  if (resultElement) {
+    resultElement.textContent = message;
+  }
+
+  rondasJugadas++;
+
+  // Incrementa las rondas ganadas cuando el jugador gana la ronda
+  if (message.includes('¡Has ganado!')) {
+    rondasGanadas++;
+  }
+
+  // Muestra las rondas ganadas en la interfaz
+  const rondasGanadasElement = document.getElementById('rondas-ganadas');
+  if (rondasGanadasElement) {
+    rondasGanadasElement.textContent = `Rondas Ganadas: ${rondasGanadas}`;
+  }
+
+  if (rondasJugadas >= numeroRondasObjetivo) {
+    // El jugador completó el número objetivo de rondas
+    console.log('¡Has completado el número objetivo de rondas!');
+
+    if (rondasGanadas >= rondasJugadas / 2) {
+      console.log('¡Has ganado más de la mitad de las rondas! ¡Ganaste el juego!');
+    } else {
+      console.log('No has ganado más de la mitad de las rondas. ¡Perdiste el juego!');
+    }
+  } else {
+    // Reinicia el tiempo cuando el jugador vuelva a jugar
+    resetCountdown();
+  }
 }
