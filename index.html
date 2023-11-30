@@ -1,15 +1,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  
   <link rel="stylesheet" href="styles.css">
   <title>Blackjack</title>
+  <a href="index2.html">Reglas</a>
 </head>
 <body onclick="PlayAudio()">
+
   
   <div id="game-container">
     <h1>Blackjack</h1>
     
+    <div id="time-remaining">Tiempo restante: 60 segundos</div>
+    
+    <div id="rondas-ganadas">Rondas Ganadas: 0</div>
     <div id="dealer-hand">
       <h2>Repartidor</h2>
       <div id="dealer-cards"></div>
@@ -25,6 +29,7 @@
     <button onclick="deal()">Repartir</button>
     <button onclick="hit()">Pedir carta</button>
     <button onclick="stand()">Plantarse</button>
+    
     <p id="game-result"></p>
   </div>
  
